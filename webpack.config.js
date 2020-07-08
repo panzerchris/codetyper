@@ -15,6 +15,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
+    library: 'codeTyper',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
