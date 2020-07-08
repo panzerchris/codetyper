@@ -1,12 +1,423 @@
-import { codeTyper } from './code-typer'
+import { codeTyper, CodeTyperState } from './code-typer'
 
 describe('Name of the group', () => {
-  it('should return the original string if no code changes are there', () => {
+  it('should get an array of changes', () => {
+    const originalCode = 'if (there === 5) {\n  console.log("there is 5")\n}\n'
+    const endCode =
+      'else if (hello === 12) {\n  console.log("hello is 12");\n}\n'
+    let codeTyperState: CodeTyperState = {
+      row: 0,
+      col: 0,
+      currentCode: originalCode,
+      endCode: endCode,
+    }
+    const resultArray = []
+    do {
+      codeTyperState = codeTyper(codeTyperState)
+      resultArray.push([
+        codeTyperState.row,
+        codeTyperState.col,
+        codeTyperState.currentCode,
+      ])
+    } while (codeTyperState.currentCode !== codeTyperState.endCode)
+
     expect(
-      codeTyper(
-        'if (hello === 5) console.log("hello")',
-        'if (hello === 5) console.log("hello")'
-      )
-    ).toEqual('if (hello === 5) console.log("hello")')
+      resultArray.map((a) => [`row: ${a[0]} col: ${a[1]}`, ...a[2].split('\n')])
+    ).toMatchInlineSnapshot(`
+      Array [
+        Array [
+          "row: 0 col: 1",
+          " if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 0",
+          " if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 1",
+          "e if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 2",
+          "el if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 3",
+          "els if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 4",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 5",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 6",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 7",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 8",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 9",
+          "else if (there === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 9",
+          "else if (here === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 10",
+          "else if (here === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 11",
+          "else if (here === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 12",
+          "else if (here === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 12",
+          "else if (her === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 11",
+          "else if (her === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 11",
+          "else if (he === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 12",
+          "else if (hel === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 13",
+          "else if (hell === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 14",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 15",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 16",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 17",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 18",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 19",
+          "else if (hello === 5) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 19",
+          "else if (hello === ) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 20",
+          "else if (hello === 1) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 0 col: 21",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 21",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 20",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 19",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 18",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 17",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 16",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 15",
+          "else if (hello === 12) {",
+          "  console.log(\\"there is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 15",
+          "else if (hello === 12) {",
+          "  console.log(\\"here is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 16",
+          "else if (hello === 12) {",
+          "  console.log(\\"here is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 17",
+          "else if (hello === 12) {",
+          "  console.log(\\"here is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 18",
+          "else if (hello === 12) {",
+          "  console.log(\\"here is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 18",
+          "else if (hello === 12) {",
+          "  console.log(\\"her is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 17",
+          "else if (hello === 12) {",
+          "  console.log(\\"her is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 17",
+          "else if (hello === 12) {",
+          "  console.log(\\"he is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 18",
+          "else if (hello === 12) {",
+          "  console.log(\\"hel is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 19",
+          "else if (hello === 12) {",
+          "  console.log(\\"hell is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 20",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 21",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 22",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 23",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 24",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 5\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 24",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is \\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 25",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 1\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 26",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 12\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 27",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 12\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 28",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 12\\")",
+          "}",
+          "",
+        ],
+        Array [
+          "row: 1 col: 29",
+          "else if (hello === 12) {",
+          "  console.log(\\"hello is 12\\");",
+          "}",
+          "",
+        ],
+      ]
+    `)
   })
 })
