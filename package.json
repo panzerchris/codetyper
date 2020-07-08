@@ -7,6 +7,7 @@
     "node": ">= 14"
   },
   "scripts": {
+    "build": "webpack --config webpack.config.js --mode production --env.production",
     "test": "jest"
   },
   "repository": {
@@ -38,6 +39,7 @@
     "prettier": "^2.0.5",
     "react-test-renderer": "16.13.1",
     "ts-jest": "^25",
+    "ts-loader": "7.0.5",
     "typescript": "^3.9.5",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.12",
