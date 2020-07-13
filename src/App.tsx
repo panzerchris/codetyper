@@ -14,7 +14,7 @@ function App() {
     const interval = setInterval(() => {
       setCodeTyperState(prev => codeTyper(prev))
       console.log('This will run every second!');
-    }, 1000);
+    }, 300);
     return () => clearInterval(interval);
   }, []);
 
